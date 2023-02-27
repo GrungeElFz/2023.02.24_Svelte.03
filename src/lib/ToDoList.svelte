@@ -8,11 +8,7 @@
 	export function clearInput() {
 		inputText = '';
 	}
-	export function focusInput() {
-		input.focus();
-	}
 
-	let input;
 	let inputText = '';
 	const dispatch = createEventDispatcher();
 
@@ -67,7 +63,7 @@
 	</ul>
 
 	<form class="toDoLists-form" on:submit|preventDefault={handleAddToDoLists}>
-		<input bind:this={input} bind:value={inputText} />
+		<input bind:value={inputText} />
 		<Button type="submit" disabled={!inputText}>Add</Button>
 	</form>
 </div>

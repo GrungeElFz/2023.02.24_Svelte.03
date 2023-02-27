@@ -24,18 +24,16 @@
 	function handleAddToDoLists(event) {
 		event.preventDefault();
 
-		setTimeout(() => {
-			toDoLists = [
-				...toDoLists,
-				{
-					id: uuid(),
-					title: event.detail.title,
-					completed: false
-				}
-			];
+		toDoLists = [
+			...toDoLists,
+			{
+				id: uuid(),
+				title: event.detail.title,
+				completed: false
+			}
+		];
 
-			toDoListBox.clearInput();
-		}, 1000);
+		toDoListBox.clearInput();
 	}
 
 	function handleRemoveToDoLists(event) {
@@ -60,11 +58,6 @@
 	on:removetodo={handleRemoveToDoLists}
 	on:toggletodo={handleToggleToDoLists}
 />
-<button
-	on:click={() => {
-		toDoListBox.focusInput();
-	}}>Focus input</button
->
 
 <style>
 </style>
