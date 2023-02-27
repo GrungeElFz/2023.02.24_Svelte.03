@@ -2,6 +2,7 @@
 	import ToDoList from './lib/ToDoList.svelte';
 	import { v4 as uuid } from 'uuid';
 
+	let showList = true;
 	let toDoListBox;
 	let toDoLists = [
 		{
@@ -51,13 +52,21 @@
 </script>
 
 <h2>{toDoLists.length} Tasks</h2>
-<ToDoList
-	{toDoLists}
-	bind:this={toDoListBox}
-	on:addtodo={handleAddToDoLists}
-	on:removetodo={handleRemoveToDoLists}
-	on:toggletodo={handleToggleToDoLists}
-/>
+
+<label>
+	<input type="checkbox" bind:checked={showList} />
+	Show/Hide Tasks
+</label>
+
+{#if showList}
+	<ToDoList
+		{toDoLists}
+		bind:this={toDoListBox}
+		on:addtodo={handleAddToDoLists}
+		on:removetodo={handleRemoveToDoLists}
+		on:toggletodo={handleToggleToDoLists}
+	/>
+{/if}
 
 <style>
 </style>

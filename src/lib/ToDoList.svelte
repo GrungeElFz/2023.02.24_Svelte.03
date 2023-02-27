@@ -2,7 +2,15 @@
 
 <script>
 	import Button from './Button.svelte';
-	import { createEventDispatcher } from 'svelte';
+	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+
+	onMount(() => {
+		console.log('Mounted');
+	});
+
+	onDestroy(() => {
+		console.log('Destroyed');
+	});
 
 	export let toDoLists = [];
 	export function clearInput() {
