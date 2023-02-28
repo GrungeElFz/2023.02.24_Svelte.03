@@ -2,7 +2,7 @@
 
 <script>
 	import Button from './Button.svelte';
-	import { createEventDispatcher, onDestroy, onMount } from 'svelte';
+	import { createEventDispatcher, onDestroy, onMount, afterUpdate, beforeUpdate } from 'svelte';
 
 	onMount(() => {
 		console.log('Mounted');
@@ -12,11 +12,22 @@
 		console.log('Destroyed');
 	});
 
+	beforeUpdate(() => {
+		if (listDiv) {
+			console.log(`Before Update: ${listDiv.offsetHeight}`);
+		}
+	});
+
+	afterUpdate(() => {
+		console.log(`After Update: ${listDiv.offsetHeight}`);
+	});
+
 	export let toDoLists = [];
 	export function clearInput() {
 		inputText = '';
 	}
 
+	let listDiv;
 	let inputText = '';
 	const dispatch = createEventDispatcher();
 
@@ -51,24 +62,26 @@
 </script>
 
 <div class="toDoLists-wrapper">
-	<ul>
-		{#each toDoLists as { id, title, completed } (id)}
-			<li>
-				<label>
-					<input
-						on:input={(event) => {
-							event.currentTarget.checked = completed;
-							handleToggleToDoLists(id, !completed);
-						}}
-						type="checkbox"
-						checked={completed}
-					/>
-					{title}
-				</label>
-				<button on:click={() => handleRemoveToDoLists(id)}>Remove</button>
-			</li>
-		{/each}
-	</ul>
+	<div class="toDoList" bind:this={listDiv}>
+		<ul>
+			{#each toDoLists as { id, title, completed } (id)}
+				<li>
+					<label>
+						<input
+							on:input={(event) => {
+								event.currentTarget.checked = completed;
+								handleToggleToDoLists(id, !completed);
+							}}
+							type="checkbox"
+							checked={completed}
+						/>
+						{title}
+					</label>
+					<button on:click={() => handleRemoveToDoLists(id)}>Remove</button>
+				</li>
+			{/each}
+		</ul>
+	</div>
 
 	<form class="toDoLists-form" on:submit|preventDefault={handleAddToDoLists}>
 		<input bind:value={inputText} />
