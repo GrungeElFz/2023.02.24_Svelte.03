@@ -5,21 +5,21 @@
 	import { createEventDispatcher, onDestroy, onMount, afterUpdate, beforeUpdate } from 'svelte';
 
 	onMount(() => {
-		console.log('Mounted');
+		console.log('Component: Mounted');
 	});
 
 	onDestroy(() => {
-		console.log('Destroyed');
+		console.log('Component: Destroyed');
 	});
 
 	beforeUpdate(() => {
 		if (listDiv) {
-			console.log(`Before Update: ${listDiv.offsetHeight}`);
+			console.log(`Element: Height.beforeUpdate -> ${listDiv.offsetHeight}`);
 		}
 	});
 
 	afterUpdate(() => {
-		console.log(`After Update: ${listDiv.offsetHeight}`);
+		console.log(`Element: Height.afterUpdate -> ${listDiv.offsetHeight}`);
 	});
 
 	export let toDoLists = [];
