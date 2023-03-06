@@ -88,3 +88,10 @@
 		<Button type="submit" disabled={!inputText}>Add</Button>
 	</form>
 </div>
+
+<style>
+	.toDoList {
+		max-height: 15rem;
+		overflow: auto;
+	}
+</style>

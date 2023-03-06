@@ -59,13 +59,15 @@
 </label>
 
 {#if showList}
-	<ToDoList
-		{toDoLists}
-		bind:this={toDoListBox}
-		on:addtodo={handleAddToDoLists}
-		on:removetodo={handleRemoveToDoLists}
-		on:toggletodo={handleToggleToDoLists}
-	/>
+	<div style:max-width="20rem">
+		<ToDoList
+			{toDoLists}
+			bind:this={toDoListBox}
+			on:addtodo={handleAddToDoLists}
+			on:removetodo={handleRemoveToDoLists}
+			on:toggletodo={handleToggleToDoLists}
+		/>
+	</div>
 {/if}
 
 <style>
