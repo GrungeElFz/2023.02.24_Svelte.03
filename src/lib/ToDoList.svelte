@@ -14,12 +14,12 @@
 
 	beforeUpdate(() => {
 		if (listDiv) {
-			console.log(`Element: Height.beforeUpdate -> ${listDiv.offsetHeight}`);
+			console.log(`Element: Height.beforeUpdate -> ${listDiv.offsetHeight}px`);
 		}
 	});
 
 	afterUpdate(() => {
-		console.log(`Element: Height.afterUpdate -> ${listDiv.offsetHeight}`);
+		console.log(`Element: Height.afterUpdate -> ${listDiv.offsetHeight}px`);
 	});
 
 	export let toDoLists = [];
