@@ -20,14 +20,27 @@
 
 	afterUpdate(() => {
 		console.log(`Element: Height.afterUpdate -> ${listDiv.offsetHeight}px`);
+
+		if (autoScroll) {
+			listDiv.scrollTo(0, listDiv.scrollHeight);
+		};
+
+		autoScroll = false;
 	});
 
 	export let toDoLists = [];
+	let prevToDoLists = toDoLists;
+
+	$: {
+		autoScroll = toDoLists.length > prevToDoLists.length;
+		prevToDoLists = toDoLists;
+	}
+
 	export function clearInput() {
 		inputText = '';
 	}
 
-	let listDiv;
+	let listDiv, autoScroll;
 	let inputText = '';
 	const dispatch = createEventDispatcher();
 
